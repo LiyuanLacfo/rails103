@@ -1,10 +1,19 @@
 <div class="col-md-12">
-	<% if current_user == @group.user %>
-		<div class="group">
-			<%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right")%>
-		</div>
-	<% end %>
-	<%= link_to("Write a post", new_group_post_path(@group), class: "btn btn-primary pull-right") %>
+	<div class="group">
+		<span class="pull-right">
+			<% if current_user.is_member_of?(@group) %>
+				<label class="label label-success">是群组成员</label>
+			<% else %>
+				<label class="label label-warning">不是群组成员</label>
+			<% end %>
+		</span>
+		<% if current_user == @group.user %>
+			<div class="group">
+				<%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right")%>
+			</div>
+		<% end %>
+		<%= link_to("Write a post", new_group_post_path(@group), class: "btn btn-primary pull-right") %>
+	</div>
 
 	<div>
 		<h2><%= @group.title %></h2>
