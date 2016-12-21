@@ -2,8 +2,10 @@
 	<div class="group">
 		<span class="pull-right">
 			<% if current_user.is_member_of?(@group) %>
+				<%= link_to("Quit", quit_group_path, method: :post, class: "btn btn-default")%>
 				<label class="label label-success">是群组成员</label>
 			<% else %>
+				<%= link_to("Join", join_group_path, method: :post, class: "btn btn-default") %>
 				<label class="label label-warning">不是群组成员</label>
 			<% end %>
 		</span>

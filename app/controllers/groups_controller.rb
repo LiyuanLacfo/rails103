@@ -41,6 +41,18 @@ class GroupsController < ApplicationController
 		redirect_to groups_path
 	end
 
+	def join
+		@group = Group.find(params[:id])
+		current_user.join!(@group)
+		flash[:notice] = "Join the group successfully!"
+	end
+
+	def quit
+		@group = Group.find(params[:id])
+		current_user.quit!(@group)
+		flash[:alert] = "Quit the group"
+	end
+
 	private
 
 	def check_user_permission
